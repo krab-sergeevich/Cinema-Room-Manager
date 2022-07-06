@@ -1,0 +1,38 @@
+package Cinema;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Cinema cinema = new Cinema();
+        System.out.println("Enter the number of rows:");
+        int row = scanner.nextInt();
+        System.out.println("Enter the number of seats in each row:");
+        int seat = scanner.nextInt();
+        String[][] spaceOfSeats = new String[row][seat];
+        spaceOfSeats = cinema.createSpaceOfSeats(row,seat);
+        boolean flag = true;
+        while (flag == true) {
+            cinema.printMenu();
+            int choice;
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    cinema.printSpace(spaceOfSeats);
+                    break;
+                case 2:
+                    cinema.getPriceOfSeatAndReserve(row,seat,spaceOfSeats);
+                    cinema.printSpace(spaceOfSeats);
+                    break;
+                case 3:
+                    cinema.printStatictics(row,seat);
+                    break;
+                case 0:
+                default:
+                    flag = false;
+                    break;
+            }
+        }
+    }
+}
